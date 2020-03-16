@@ -1,0 +1,26 @@
+<launch>
+  <!-- Turtlebot -->
+  <arg name="base"              default="$(optenv TURTLEBOT_BASE kobuki)"         doc="mobile base type [create, roomba]"/>
+  <arg name="battery"           default="$(optenv TURTLEBOT_BATTERY /proc/acpi/battery/BAT0)"      doc="kernel provided locatio for battery info, use /proc/acpi/battery/BAT0 in 2.6 or earlier kernels." />
+  <arg name="stacks"            default="$(optenv TURTLEBOT_STACKS hexagons)"       doc="stack type displayed in visualisation/simulation [circles, hexagons]"/>
+  <arg name="lidar_sensor"      default="$(optenv TURTLEBOT_SENSOR rplidar_a2)"/>
+  <arg name="simulation"        default="$(optenv TURTLEBOT_SIMULATION false)"   doc="set flags to indicate this turtle is run in simulation mode."/>
+  <arg name="serialport"        default="$(env TURTLEBOT_SERIAL_PORT)"  doc="used by create to configure the port it is connected on [/dev/ttyUSB0, /dev/ttyS0]"/>
+
+  <param name="/use_sim_time" value="$(arg simulation)"/>
+
+  <include file="$(find turtlebot2_lidar)/launch/includes/robot_lidar.launch.xml">
+    <arg name="base" value="$(arg base)" />
+    <arg name="stacks" value="$(arg stacks)" />
+    <arg name="lidar_sensor" value="$(arg lidar_sensor)" />
+  </include>
+  <include file="$(find turtlebot_bringup)/launch/includes/mobile_base.launch.xml">
+    <arg name="base" value="$(arg base)" />
+    <arg name="serialport" value="$(arg serialport)" />
+  </include>
+  <include unless="$(eval arg('battery') == 'None')" file="$(find turtlebot_bringup)/launch/includes/netbook.launch.xml">
+    <arg name="battery" value="$(arg battery)" />
+  </include>
+
+  <include file="$(find rplidar_ros)/launch/rplidar.launch"/>
+</launch>

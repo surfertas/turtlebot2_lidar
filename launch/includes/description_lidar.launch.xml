@@ -1,0 +1,11 @@
+<!--
+  Robot description only (used in private and paired master).
+ -->
+<launch>
+  <arg name="base"/>
+  <arg name="stacks"/>
+  <arg name="lidar_sensor"/>
+
+  <arg name="urdf_file" default="$(find xacro)/xacro '$(find turtlebot2_lidar)/robots/$(arg base)_$(arg stacks)_$(arg lidar_sensor).urdf.xacro'"/>
+  <param name="robot_description" command="$(arg urdf_file)"/>
+</launch>
