@@ -1,0 +1,8 @@
+<launch>
+  <!-- Move base -->
+  <include file="$(find turtlebot_navigation)/launch/includes/move_base.launch.xml"/>
+  
+  <node pkg="tf" type="static_transform_publisher" name="base_laser_link_to_laser" args="0 0 0 0 0 0 /base_laser_link /laser 100"/>
+
+  <include file="$(find slam_toolbox)/online_sync.launch"/>
+</launch>
