@@ -3,7 +3,7 @@ echo "Setting env variables.."
 export TURTLEBOT_SENSOR=rplidar_a2
 export TURTLEBOT_BASE=kobuki
 export TURTLEBOT_STACKS=hexagons
-export TURTLEBOT_SERIAL_PORT=/dev/ttyUSB0
+export TURTLEBOT_SERIAL_PORT=/dev/ttyUSB1
 export TURTLEBOT_BATTERY=/proc/acpi/battery/BAT0
 export TURTLEBOT_SIMULATION=false
 export TURTLEBOT_MAP_FILE=/home/tasuku/workspace/ros/turtlebot2_ws/src/turtlebot2_lidar/map/0001.yaml
