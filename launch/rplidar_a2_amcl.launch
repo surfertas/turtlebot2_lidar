@@ -25,7 +25,7 @@
     <arg name="custom_param_file" value="$(arg custom_param_file)"/>
   </include>
 
-  <node pkg="tf" type="static_transform_publisher" name="base_laser_link_to_laser" args="0 0 0 0 0 0 /base_laser_link /laser 100"/>
+  <node pkg="tf" type="static_transform_publisher" name="base_laser_link_to_laser" args="0 0 0 0 0 0 base_laser_link laser 100"/>
 
 
 </launch>

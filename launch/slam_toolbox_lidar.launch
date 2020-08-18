@@ -4,5 +4,8 @@
   
   <node pkg="tf" type="static_transform_publisher" name="base_laser_link_to_laser" args="0 0 0 0 0 0 /base_laser_link /laser 100"/>
 
-  <include file="$(find slam_toolbox)/online_sync.launch"/>
+  <node pkg="slam_toolbox" type="sync_slam_toolbox_node" name="slam_toolbox" output="screen">
+    <rosparam command="load" file="$(find turtlebot2_lidar)/config/mapper_params_online_sync.yaml" />
+  </node>
+
 </launch>
